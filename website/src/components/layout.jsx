@@ -9,8 +9,8 @@ export const Layout = ({ children }) => {
   
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
-      <AnimatePresence mode="wait">
+     <Navbar />
+      <AnimatePresence mode="wait"> 
         <motion.main
           key={location.pathname}
           initial={{ opacity: 0, y: 20 }}

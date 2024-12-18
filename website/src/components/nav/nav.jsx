@@ -38,7 +38,7 @@ export const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${
+      className={`fixed w-full z-50 transition-all duration-30 ${
         scrolled ? 'bg-white shadow-lg' : 'bg-white'
       }`}
     >
@@ -61,7 +61,7 @@ export const Navbar = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`transition-colors duration-200 hover:text-primary ${
+                className={`transition-colors duration-20 hover:text-primary ${
                   location.pathname === item.path
                     ? 'text-primary font-semibold'
                     : 'text-neutral'
@@ -74,7 +74,7 @@ export const Navbar = () => {
             {/* Language Selector */}
             <div className="relative group">
               <button className="flex items-center space-x-1">
-                <Globe className="w-5 h-5" />
+                <Globe className="w-5 h-5 text-primary" />
                 <span>{language.toUpperCase()}</span>
               </button>
               <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -136,12 +136,13 @@ export const Navbar = () => {
                     setLanguage(lang.code);
                     setIsOpen(false);
                   }}
-                  className={`text-left ${
+                  className={`text-left flex items-center space-x-1 ${
                     language === lang.code
                       ? 'text-primary font-semibold'
                       : 'text-neutral'
                   }`}
                 >
+                  <Globe className="w-5 h-5 text-primary" />
                   {lang.name}
                 </button>
               ))}
