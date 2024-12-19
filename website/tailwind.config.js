@@ -13,6 +13,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        roboto: ['Geist', 'sans-serif'],
+      },
       colors: {
         primary: "#2563EB",
         secondary: "#F59E0B",

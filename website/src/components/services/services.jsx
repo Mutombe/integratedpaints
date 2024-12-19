@@ -1,7 +1,104 @@
 // src/pages/Services.jsx
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Brush, Ruler, Building, HomeIcon, Wrench,  Paintbrush , ShieldCheck } from 'lucide-react';
+import { Brush, Ruler, Building, HomeIcon, Wrench, Paintbrush, ShieldCheck, Clock, Shield } from 'lucide-react';
+
+const ServicesHeroSection = () => {
+  // We create a background pattern effect using a gradient and overlay
+  // This adds visual interest while maintaining readability
+  const overlayStyle = {
+    backgroundImage: 
+      `linear-gradient(120deg, rgba(59, 130, 246, 0.9), rgba(37, 99, 235, 0.95)),
+       url('/2.jpg')`
+  };
+
+  // Animation variants for the content entrance
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        staggerChildren: 0.3
+      }
+    }
+  };
+
+  const childVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+
+  return (
+    <section className="relative min-h-[500px] overflow-hidden">
+      {/* Background with pattern overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={overlayStyle}
+      />
+      
+      {/* Subtle glass effect for depth */}
+      <div className="absolute inset-0 backdrop-blur-sm bg-black/5" />
+
+      {/* Main content container */}
+      <div className="relative py-20">
+        <div className="container mx-auto px-4">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-center"
+          >
+            {/* Main heading and description */}
+            <motion.div variants={childVariants}>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+                Our Services
+              </h1>
+              <p className="text-xl max-w-2xl mx-auto text-white/90 mb-12">
+                Professional painting and construction services tailored to your needs
+              </p>
+            </motion.div>
+
+            {/* Service highlights with icons */}
+            <motion.div 
+              variants={childVariants}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mt-8"
+            >
+              {/* Each service highlight is a card with an icon and description */}
+              <div className="backdrop-blur-md bg-white/10 p-6 rounded-lg">
+                <Paintbrush className="w-8 h-8 mx-auto mb-4 text-white" />
+                <h3 className="text-lg font-semibold mb-2">Expert Painting</h3>
+                <p className="text-white/80">Interior and exterior painting with premium materials</p>
+              </div>
+
+              <div className="backdrop-blur-md bg-white/10 p-6 rounded-lg">
+                <Building className="w-8 h-8 mx-auto mb-4 text-white" />
+                <h3 className="text-lg font-semibold mb-2">Construction</h3>
+                <p className="text-white/80">Full-scale construction and renovation services</p>
+              </div>
+
+              <div className="backdrop-blur-md bg-white/10 p-6 rounded-lg">
+                <Clock className="w-8 h-8 mx-auto mb-4 text-white" />
+                <h3 className="text-lg font-semibold mb-2">Timely Delivery</h3>
+                <p className="text-white/80">Project completion within agreed timelines</p>
+              </div>
+
+              <div className="backdrop-blur-md bg-white/10 p-6 rounded-lg">
+                <Shield className="w-8 h-8 mx-auto mb-4 text-white" />
+                <h3 className="text-lg font-semibold mb-2">Quality Guarantee</h3>
+                <p className="text-white/80">Satisfaction guaranteed on all our work</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const Services = () => {
   const { t } = useTranslation();
@@ -56,20 +153,7 @@ const Services = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-primary text-white py-20">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Services</h1>
-            <p className="text-xl max-w-2xl mx-auto">
-              Professional painting and construction services tailored to your needs
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <ServicesHeroSection />
 
       {/* Services Grid */}
       <section className="py-20 bg-gray-50">

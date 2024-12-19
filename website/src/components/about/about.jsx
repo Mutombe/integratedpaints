@@ -3,6 +3,43 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Users, Award, Clock, Shield } from 'lucide-react';
 
+const HeroSection = () => {
+  return (
+    <section className="relative h-[500px] w-full overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('/3.jpeg')`,
+        }}
+      />
+      
+      {/* Gradient Overlay - Creates depth and ensures text readability */}
+      <div className="absolute inset-0 bg-blue-600/70" />
+      
+      {/* Glass Effect Layer */}
+      <div className="absolute inset-0 backdrop-blur-sm bg-white/10" />
+      
+      {/* Content Container */}
+      <div className="relative h-full container mx-auto px-4 flex items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mx-auto text-center"
+        >
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+            About Integrated Painters
+          </h1>
+          <p className="text-xl text-white/90">
+            Excellence in Painting and Construction Since 2008
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
 const About = () => {
   const { t } = useTranslation();
 
@@ -16,23 +53,8 @@ const About = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-primary text-white py-20">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              About Integrated Painters
-            </h1>
-            <p className="text-xl opacity-90">
-              Excellence in Painting and Construction Since 2008
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <HeroSection />
+
 
       {/* Company Overview */}
       <section className="py-16">

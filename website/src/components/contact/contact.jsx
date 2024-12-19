@@ -6,6 +6,79 @@ import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import { ArrowRight } from 'lucide-react';
+
+const ContactHeroSection = () => {
+  // Define animation variants for staggered animations of content
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        // This will make child elements animate in sequence
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const childVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 }
+    }
+  };
+
+  return (
+    <motion.section 
+      className="relative min-h-[400px] w-full overflow-hidden"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {/* Background Image Layer */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('/2.jpg')`,
+        }}
+      />
+      
+      {/* Gradient Overlay - Creates a professional, approachable atmosphere */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 to-blue-800/90" />
+      
+      {/* Glass Effect Layer - Adds sophistication and depth */}
+      <div className="absolute inset-0 backdrop-blur-sm bg-white/5" />
+      
+      {/* Content Container */}
+      <div className="relative py-20">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="max-w-2xl"
+            variants={childVariants}
+          >
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+              Contact Us
+            </h1>
+            <p className="text-xl text-white/90 mb-6">
+              Get in touch with us for your painting and construction needs
+            </p>
+            
+            {/* Additional engagement elements */}
+            <div className="flex items-center space-x-4 text-white/90">
+              <ArrowRight className="w-5 h-5" />
+              <p className="text-lg">
+                We typically respond within 24 hours
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </motion.section>
+  );
+};
 
 // Fix for default marker icon
 delete L.Icon.Default.prototype._getIconUrl;
@@ -61,18 +134,7 @@ const Contact = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="bg-primary text-white py-20"
-      >
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-          <p className="text-xl opacity-90">
-            Get in touch with us for your painting and construction needs
-          </p>
-        </div>
-      </motion.section>
+    <ContactHeroSection />
 
       {/* Contact Information */}
       <section className="py-16 bg-gray-50">

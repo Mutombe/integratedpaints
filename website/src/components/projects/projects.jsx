@@ -2,6 +2,55 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ArrowRight } from 'lucide-react';
+
+const ProjectsHero = () => {
+  return (
+    <section className="relative min-h-[400px] w-full overflow-hidden">
+      {/* Background Image Layer */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('/api/placeholder/1920/1080')`,
+        }}
+      />
+      
+      {/* Gradient Overlay - Creates depth and ensures text readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 to-blue-800/80" />
+      
+      {/* Glass Effect Layer */}
+      <div className="absolute inset-0 backdrop-blur-sm bg-blue-900/20" />
+      
+      {/* Content Container */}
+      <div className="relative">
+        <div className="container mx-auto px-4 py-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="max-w-3xl"
+          >
+            <h1 className="text-4xl font-bold mb-4 text-white">
+              Our Projects
+            </h1>
+            <p className="text-xl text-white/90 mb-6">
+              Showcasing our finest work across Zimbabwe
+            </p>
+            
+            {/* Additional engagement element */}
+            <div className="flex items-center space-x-3 text-white/80">
+              <ArrowRight className="w-5 h-5" />
+              <p className="text-lg">
+                Explore our portfolio of completed projects
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 
 const Projects = () => {
   const { t } = useTranslation();
@@ -19,7 +68,7 @@ const Projects = () => {
       id: 1,
       title: 'Modern Office Complex',
       category: 'commercial',
-      image: '/projects/office.jpg',
+      image: '/p1.webp',
       description: 'Complete interior and exterior painting for a 5-story office building',
       location: 'Harare CBD',
     },
@@ -27,7 +76,7 @@ const Projects = () => {
       id: 2,
       title: 'Luxury Villa Renovation',
       category: 'residential',
-      image: '/projects/villa.jpg',
+      image: '/p2.jpg',
       description: 'Full renovation and painting of a luxury residential property',
       location: 'Highlands',
     },
@@ -91,8 +140,9 @@ const ProjectCard = ({ project }) => (
     className="bg-white rounded-lg shadow-lg overflow-hidden"
   >
     <div className="aspect-video bg-gray-200">
+
       {/* Replace with actual image */}
-      <div className="w-full h-full bg-gray-300" />
+      <img src={project.image} alt={project.title} />
     </div>
     <div className="p-6">
       <h3 className="text-xl font-bold mb-2">{project.title}</h3>

@@ -4,14 +4,16 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'sonner';
 import { Layout } from './components/layout.jsx';
 import { LanguageProvider } from './context/context.jsx';
-import Home from './components/home/home.jsx';
-import Services from './components/services/services.jsx';
-import Projects from './components/projects/projects.jsx';
-import About from './components/about/about.jsx';
-import Contact from './components/contact/contact.jsx';
 import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { Suspense, lazy, useState, useEffect } from "react";
 
+
+// Implementing lazy loading for route components to improve initial load time
+const Home = lazy(() => import("./components/home/home"));
+const Projects = lazy(() => import("./components/projects/projects"));
+const About = lazy(() => import("./components/about/about"));
+const Contact = lazy(() => import("./components/contact/contact"));
+const Services = lazy(() => import("./components/services/services"));
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -26,6 +28,24 @@ const ScrollToTop = () => {
 const queryClient = new QueryClient();
 
 function App() {
+
+  useEffect(() => {
+    const preloadImages = [
+      "logo.png",
+      "/2.jpg",
+      "/IP.png",
+      "p1.webp",
+      "p2.jpg",
+      
+      // Add other critical images here
+    ];
+
+    preloadImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
