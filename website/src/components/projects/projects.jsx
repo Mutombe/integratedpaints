@@ -11,15 +11,17 @@ const ProjectsHero = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/api/placeholder/1920/1080')`,
+          backgroundImage: `url('/2.jpg')`,
         }}
       />
       
       {/* Gradient Overlay - Creates depth and ensures text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 to-blue-800/80" />
+      {/* Gradient Overlay - Creates a professional, approachable atmosphere */}
+
+      <div className="absolute inset-0 bg-blue-600/70" />
       
-      {/* Glass Effect Layer */}
-      <div className="absolute inset-0 backdrop-blur-sm bg-blue-900/20" />
+      {/* Glass Effect Layer - Adds sophistication and depth */}
+      <div className="absolute inset-0 backdrop-blur-sm bg-white/10" />
       
       {/* Content Container */}
       <div className="relative">
@@ -90,12 +92,7 @@ const Projects = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-primary text-white py-20">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-4">Our Projects</h1>
-          <p className="text-xl">Showcasing our finest work across Zimbabwe</p>
-        </div>
-      </section>
+      <ProjectsHero />
 
       {/* Filter Section */}
       <section className="py-8 bg-gray-50">

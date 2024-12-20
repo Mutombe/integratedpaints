@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Users, Award, Clock, Shield } from 'lucide-react';
+import { PaintBrandsShowcase, PartnersShowcase } from '../paints/paints';
 
 const HeroSection = () => {
   return (
@@ -10,7 +11,7 @@ const HeroSection = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/3.jpeg')`,
+          backgroundImage: `url('/p7.jpg')`,
         }}
       />
       
@@ -84,7 +85,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="relative h-[400px]"
             >
-              <div className="absolute inset-0 bg-[url('/logo.png')] bg-center bg-cover rounded-lg shadow-xl" />
+              <div className="absolute inset-0 bg-[url('/p4.jpg')] bg-center bg-cover rounded-lg shadow-xl" />
             </motion.div>
           </div>
         </div>
@@ -149,6 +150,8 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      <PartnersShowcase />
     </div>
   );
 };

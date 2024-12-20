@@ -8,7 +8,7 @@ const ServicesHeroSection = () => {
   // This adds visual interest while maintaining readability
   const overlayStyle = {
     backgroundImage: 
-      `linear-gradient(120deg, rgba(59, 130, 246, 0.9), rgba(37, 99, 235, 0.95)),
+      `absolute inset-0 bg-cover bg-center bg-no-repeat,
        url('/2.jpg')`
   };
 
@@ -35,14 +35,17 @@ const ServicesHeroSection = () => {
 
   return (
     <section className="relative min-h-[500px] overflow-hidden">
-      {/* Background with pattern overlay */}
       <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={overlayStyle}
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('/p7.jpg')`,
+        }}
       />
+
+      <div className="absolute inset-0 bg-blue-600/70" />
       
-      {/* Subtle glass effect for depth */}
-      <div className="absolute inset-0 backdrop-blur-sm bg-black/5" />
+      {/* Glass Effect Layer - Adds sophistication and depth */}
+      <div className="absolute inset-0 backdrop-blur-sm bg-white/10" />
 
       {/* Main content container */}
       <div className="relative py-20">

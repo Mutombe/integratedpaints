@@ -47,10 +47,11 @@ const ContactHeroSection = () => {
       />
       
       {/* Gradient Overlay - Creates a professional, approachable atmosphere */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 to-blue-800/90" />
+
+      <div className="absolute inset-0 bg-blue-600/70" />
       
       {/* Glass Effect Layer - Adds sophistication and depth */}
-      <div className="absolute inset-0 backdrop-blur-sm bg-white/5" />
+      <div className="absolute inset-0 backdrop-blur-sm bg-white/10" />
       
       {/* Content Container */}
       <div className="relative py-20">
