@@ -99,34 +99,66 @@ const ServicesHeroSection = () => {
 };
 
 const ServiceCard = ({ service, index }) => {
+  // Map service types to appropriate background images
+  const getBackgroundImage = (title) => {
+    const backgrounds = {
+      'Interior Painting': '/p5.jpg', // Interior room image
+      'Exterior Painting': '/p6.jpg', // House exterior image
+      'Commercial Painting': '/p4.jpg', // Office building image
+      'Construction Services': 'p3.webp', // Construction site image
+    };
+    return backgrounds[title] || '/api/placeholder/800/600';
+  };
+
+  // Define specific overlay colors for each service type
+  const getGradientOverlay = (title) => {
+    const overlays = {
+      'Interior Painting': 'from-white/95 via-white/90 to-primary/5',
+      'Exterior Painting': 'from-white/95 via-white/90 to-secondary/5',
+      'Commercial Painting': 'from-white/95 via-white/90 to-blue-500/5',
+      'Construction Services': 'from-white/95 via-white/90 to-gray-500/5',
+    };
+    return overlays[title] || 'from-white/95 via-white/90 to-primary/5';
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className="relative group bg-white rounded-lg shadow-lg overflow-hidden"
+      className="relative group bg-white rounded-lg shadow-lg overflow-hidden h-full"
     >
-      <div className="absolute inset-0">
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 transition-transform duration-700">
         <img
-          src="/p4.jpg"
+          src={getBackgroundImage(service.title)}
           alt={`${service.title} background`}
-          className="w-full h-full object-cover opacity-10 transition-transform duration-700 group-hover:scale-110"
+          className="w-full h-full object-cover opacity-15 transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-white/90 to-white/80" />
+        <div className={`absolute inset-0 bg-gradient-to-br ${getGradientOverlay(service.title)}`} />
       </div>
 
+      {/* Glass Effect Overlay */}
+      <div className="absolute inset-0 backdrop-blur-[2px] opacity-30" />
+
+      {/* Content Container */}
       <div className="relative p-8">
+        {/* Service Header */}
         <div className="flex items-center mb-6">
-          <div className="bg-primary/10 p-3 rounded-lg">
+          <div className="bg-white/80 p-3 rounded-lg shadow-sm backdrop-blur-sm">
             <div className="text-primary w-8 h-8">
               {service.icon}
             </div>
           </div>
-          <h3 className="text-2xl font-bold ml-4">{service.title}</h3>
+          <h3 className="text-2xl font-bold ml-4 text-gray-800">{service.title}</h3>
         </div>
 
-        <p className="text-gray-600 mb-6">{service.description}</p>
+        {/* Service Description */}
+        <p className="text-gray-700 mb-6 backdrop-blur-sm bg-white/50 p-3 rounded-lg">
+          {service.description}
+        </p>
 
+        {/* Features List */}
         <ul className="space-y-3">
           {service.features.map((feature, idx) => (
             <motion.li
@@ -134,7 +166,7 @@ const ServiceCard = ({ service, index }) => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: (index * 0.1) + (idx * 0.1) }}
-              className="flex items-center text-gray-700 group/feature"
+              className="flex items-center text-gray-700 group/feature backdrop-blur-sm bg-white/50 p-2 rounded-lg"
             >
               <div className="relative">
                 <ShieldCheck className="w-5 h-5 text-primary mr-3 transition-transform duration-300 group-hover/feature:scale-110" />

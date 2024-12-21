@@ -123,7 +123,7 @@ const Contact = () => {
     {
       icon: <MapPin className="w-6 h-6" />,
       title: 'Address',
-      details: ['123 Example Street', 'Harare, Zimbabwe'],
+      details: [' 117 Enterprise Road, Highlands', 'Harare, Zimbabwe'],
     },
     {
       icon: <Clock className="w-6 h-6" />,
@@ -250,7 +250,7 @@ const Contact = () => {
               className="h-[500px] rounded-lg overflow-hidden shadow-lg"
             >
               <MapContainer
-                center={[-17.8216, 31.0492]} // Harare coordinates
+                center={[-17.8323402, 31.023803,13]} // Harare coordinates
                 zoom={13}
                 style={{ height: '100%', width: '100%' }}
               >
@@ -258,10 +258,10 @@ const Contact = () => {
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
-                <Marker position={[-17.8216, 31.0492]}>
+                <Marker position={[-17.8323402, 31.023803,13]}>
                   <Popup>
                     Integrated Painters / Buildmarque <br />
-                    123 Example Street, Harare
+                    117 Enterprise Road, Highlands, Harare,
                   </Popup>
                 </Marker>
               </MapContainer>
