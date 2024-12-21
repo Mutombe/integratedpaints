@@ -1,18 +1,19 @@
 // src/pages/Services.jsx
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Brush, Ruler, Building, HomeIcon, Wrench, Paintbrush, ShieldCheck, Clock, Shield } from 'lucide-react';
+import { 
+  Brush, 
+  Ruler, 
+  Building, 
+  HomeIcon, 
+  Wrench, 
+  Paintbrush, 
+  ShieldCheck, 
+  Clock, 
+  Shield 
+} from 'lucide-react';
 
 const ServicesHeroSection = () => {
-  // We create a background pattern effect using a gradient and overlay
-  // This adds visual interest while maintaining readability
-  const overlayStyle = {
-    backgroundImage: 
-      `absolute inset-0 bg-cover bg-center bg-no-repeat,
-       url('/2.jpg')`
-  };
-
-  // Animation variants for the content entrance
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -43,11 +44,8 @@ const ServicesHeroSection = () => {
       />
 
       <div className="absolute inset-0 bg-blue-600/70" />
-      
-      {/* Glass Effect Layer - Adds sophistication and depth */}
       <div className="absolute inset-0 backdrop-blur-sm bg-white/10" />
 
-      {/* Main content container */}
       <div className="relative py-20">
         <div className="container mx-auto px-4">
           <motion.div
@@ -56,7 +54,6 @@ const ServicesHeroSection = () => {
             animate="visible"
             className="text-center"
           >
-            {/* Main heading and description */}
             <motion.div variants={childVariants}>
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
                 Our Services
@@ -66,33 +63,31 @@ const ServicesHeroSection = () => {
               </p>
             </motion.div>
 
-            {/* Service highlights with icons */}
             <motion.div 
               variants={childVariants}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mt-8"
             >
-              {/* Each service highlight is a card with an icon and description */}
               <div className="backdrop-blur-md bg-white/10 p-6 rounded-lg">
                 <Paintbrush className="w-8 h-8 mx-auto mb-4 text-white" />
-                <h3 className="text-lg font-semibold mb-2">Expert Painting</h3>
+                <h3 className="text-lg font-semibold mb-2 text-white">Expert Painting</h3>
                 <p className="text-white/80">Interior and exterior painting with premium materials</p>
               </div>
 
               <div className="backdrop-blur-md bg-white/10 p-6 rounded-lg">
                 <Building className="w-8 h-8 mx-auto mb-4 text-white" />
-                <h3 className="text-lg font-semibold mb-2">Construction</h3>
+                <h3 className="text-lg font-semibold mb-2 text-white">Construction</h3>
                 <p className="text-white/80">Full-scale construction and renovation services</p>
               </div>
 
               <div className="backdrop-blur-md bg-white/10 p-6 rounded-lg">
                 <Clock className="w-8 h-8 mx-auto mb-4 text-white" />
-                <h3 className="text-lg font-semibold mb-2">Timely Delivery</h3>
+                <h3 className="text-lg font-semibold mb-2 text-white">Timely Delivery</h3>
                 <p className="text-white/80">Project completion within agreed timelines</p>
               </div>
 
               <div className="backdrop-blur-md bg-white/10 p-6 rounded-lg">
                 <Shield className="w-8 h-8 mx-auto mb-4 text-white" />
-                <h3 className="text-lg font-semibold mb-2">Quality Guarantee</h3>
+                <h3 className="text-lg font-semibold mb-2 text-white">Quality Guarantee</h3>
                 <p className="text-white/80">Satisfaction guaranteed on all our work</p>
               </div>
             </motion.div>
@@ -100,6 +95,87 @@ const ServicesHeroSection = () => {
         </div>
       </div>
     </section>
+  );
+};
+
+const ServiceCard = ({ service, index }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1 }}
+      className="relative group bg-white rounded-lg shadow-lg overflow-hidden"
+    >
+      <div className="absolute inset-0">
+        <img
+          src="/p4.jpg"
+          alt={`${service.title} background`}
+          className="w-full h-full object-cover opacity-10 transition-transform duration-700 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-white/90 to-white/80" />
+      </div>
+
+      <div className="relative p-8">
+        <div className="flex items-center mb-6">
+          <div className="bg-primary/10 p-3 rounded-lg">
+            <div className="text-primary w-8 h-8">
+              {service.icon}
+            </div>
+          </div>
+          <h3 className="text-2xl font-bold ml-4">{service.title}</h3>
+        </div>
+
+        <p className="text-gray-600 mb-6">{service.description}</p>
+
+        <ul className="space-y-3">
+          {service.features.map((feature, idx) => (
+            <motion.li
+              key={idx}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: (index * 0.1) + (idx * 0.1) }}
+              className="flex items-center text-gray-700 group/feature"
+            >
+              <div className="relative">
+                <ShieldCheck className="w-5 h-5 text-primary mr-3 transition-transform duration-300 group-hover/feature:scale-110" />
+                <div className="absolute inset-0 bg-primary/20 rounded-full blur-lg opacity-0 group-hover/feature:opacity-100 transition-opacity duration-300" />
+              </div>
+              {feature}
+            </motion.li>
+          ))}
+        </ul>
+      </div>
+    </motion.div>
+  );
+};
+
+const ProcessStep = ({ step, index }) => {
+  return (
+    <motion.div
+      whileHover={{ y: -5 }}
+      className="relative group"
+    >
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-gradient-to-br from-primary/20 to-primary/5 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
+      <div className="relative text-center">
+        <div className="w-20 h-20 mx-auto mb-6 relative">
+          <div className="absolute inset-0 bg-primary/10 rounded-2xl transform rotate-3 group-hover:rotate-6 transition-transform duration-300" />
+          <div className="absolute inset-0 bg-primary/10 rounded-2xl transform -rotate-3 group-hover:-rotate-6 transition-transform duration-300" />
+          <div className="relative w-full h-full bg-white rounded-2xl shadow-lg flex items-center justify-center">
+            <div className="text-primary transform group-hover:scale-110 transition-transform duration-300">
+              {step.icon}
+            </div>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+        <p className="text-gray-600">{step.description}</p>
+
+        {index < 3 && (
+          <div className="hidden md:block absolute top-10 left-[60%] w-[calc(100%-4rem)] h-[2px] bg-gradient-to-r from-primary/30 to-primary/10" />
+        )}
+      </div>
+    </motion.div>
   );
 };
 
@@ -153,72 +229,38 @@ const Services = () => {
     }
   ];
 
+  const processSteps = [
+    { icon: <Wrench className="w-8 h-8" />, title: 'Consultation', description: 'Initial meeting and assessment' },
+    { icon: <Ruler className="w-8 h-8" />, title: 'Planning', description: 'Detailed project planning' },
+    { icon: <Brush className="w-8 h-8" />, title: 'Execution', description: 'Professional implementation' },
+    { icon: <ShieldCheck className="w-8 h-8" />, title: 'Quality Check', description: 'Final inspection and approval' }
+  ];
+
   return (
     <div className="pt-16">
-      {/* Hero Section */}
       <ServicesHeroSection />
 
-      {/* Services Grid */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-lg shadow-lg overflow-hidden"
-              >
-                <div className="p-6">
-                  <div className="text-primary w-12 h-12 mb-4">
-                    {service.icon}
-                  </div>
-                  <h3 className="text-2xl font-bold mb-2">{service.title}</h3>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  <ul className="space-y-2">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-gray-700">
-                        <ShieldCheck className="w-5 h-5 text-primary mr-2" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
+              <ServiceCard key={index} service={service} index={index} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Process Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Process</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              { icon: <Wrench />, title: 'Consultation', description: 'Initial meeting and assessment' },
-              { icon: <Ruler />, title: 'Planning', description: 'Detailed project planning' },
-              { icon: <Brush />, title: 'Execution', description: 'Professional implementation' },
-              { icon: <ShieldCheck />, title: 'Quality Check', description: 'Final inspection and approval' }
-            ].map((step, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ y: -5 }}
-                className="text-center"
-              >
-                <div className="w-16 h-16 mx-auto mb-4 text-primary">
-                  {step.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
-              </motion.div>
+          <h2 className="text-3xl font-bold text-center mb-16">Our Process</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+            {processSteps.map((step, index) => (
+              <ProcessStep key={index} step={step} index={index} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Start Your Project?</h2>
